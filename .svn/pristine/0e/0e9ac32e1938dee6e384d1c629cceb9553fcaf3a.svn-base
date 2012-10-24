@@ -1,0 +1,84 @@
+default.doesnt.match.message=La proprietà [{0}] della classe [{1}] con valore [{2}] non corrisponde al pattern [{3}]
+default.invalid.url.message=La proprietà [{0}] della classe [{1}] con valore [{2}] non è un URL valido
+default.invalid.creditCard.message=La proprietà [{0}] della classe [{1}] con valore [{2}] non è un numero di carta di credito valido
+default.invalid.email.message=La proprietà [{0}] della classe [{1}] con valore [{2}] non è un indirizzo email valido
+default.invalid.range.message=La proprietà [{0}] della classe [{1}] con valore [{2}] non rientra nell'intervallo valido da [{3}] a [{4}]
+default.invalid.size.message=La proprietà [{0}] della classe [{1}] con valore [{2}] non rientra nell'intervallo di dimensioni valide da [{3}] a [{4}]
+default.invalid.max.message=La proprietà [{0}] della classe [{1}] con valore [{2}] è maggiore di [{3}]
+default.invalid.min.message=La proprietà [{0}] della classe [{1}] con valore [{2}] è minore di [{3}]
+default.invalid.max.size.message=La proprietà [{0}] della classe [{1}] con valore [{2}] è maggiore di [{3}]
+default.invalid.min.size.message=La proprietà [{0}] della classe [{1}] con valore [{2}] è minore di [{3}]
+default.invalid.validator.message=La proprietà [{0}] della classe [{1}] con valore [{2}] non è valida
+default.not.inlist.message=La proprietà [{0}] della classe [{1}] con valore [{2}] non è contenuta nella lista [{3}]
+default.blank.message=La proprietà [{0}] della classe [{1}] non può essere vuota
+default.not.equal.message=La proprietà [{0}] della classe [{1}] con valore [{2}] non può essere uguale a [{3}]
+default.null.message=La proprietà [{0}] della classe [{1}] non può essere null
+default.not.unique.message=La proprietà [{0}] della classe [{1}] con valore [{2}] deve essere unica
+
+default.paginate.prev=Precedente
+default.paginate.next=Successivo
+
+default.created.message={0} {1} created
+default.updated.message={0} {1} updated
+default.deleted.message={0} {1} deleted
+
+default.button.create.label=Create
+default.button.edit.label=Modifica
+default.button.update.label=Registra
+default.button.delete.label=Cancella
+default.button.delete.confirm.message=Sei sicuro?
+
+default.tabellone.label=Torna al tabellone
+default.edit.ordinario.label=Modifica turno ordinario
+default.edit.118.label=Modifica turno 118
+default.edit.avis.label=Modifica turno avis
+default.edit.extra.label=Modifica turno extra
+
+pub.edit.turno.centralino.inizio=Inizio operatività
+pub.edit.turno.centralino.fine=Termine operatività
+pub.edit.turno.centralino.operatore=Operatore
+
+default.date.format=d MMM yyyy
+pub.date.format=d MMM
+pub.time.format=d MMM
+
+pub.button.update.label=Registra modifiche
+pub.button.cancel.label=Annulla modifiche
+pub.button.delete.label=Cancella turno
+
+pub.help.titolo=Pagina di aiuto
+
+turno.label=Turno
+turno.id.label=ID
+turno.giorno.label=Giorno
+turno.tipoTurno.label=Tipo Turno
+turno.inizio.label=Inizio
+turno.fine.label=Fine
+turno.autista.label=Autista
+turno.secondo.label=Secondo
+turno.terzo.label=Terzo
+turno.problemiAutista.label=Problemi autista
+turno.problemiSecondo.label=Problemi secondo
+turno.problemiTerzo.label=Problemi terzo
+turno.localitàExtra.label=Località
+turno.macchina.label=Macchina
+turno.ore.label=Ore
+turno.note.label=Note
+
+tipoTurno.ordine.label=Ordine
+tipoTurno.inizio.label=Inizio
+tipoTurno.fine.label=Fine
+
+turno.inizio.nota=Orario di inizio turno (eventualmente modificabile)
+turno.fine.nota=Orario di fine turno (eventualmente modificabile)
+turno.problemi.autista.nota=Eventuali problemi di orario dell'autista (specificare nelle note)
+turno.problemi.secondo.nota=Eventuali problemi di orario del secondo (specificare nelle note)
+turno.problemi.terzo.nota=Eventuali problemi di orario del terzo (specificare nelle note)
+
+turno.extra.inizio.nota=Orario di partenza dalla sede (necessario)
+turno.extra.fine.nota=Orario indicativo di rientro (facoltativo)
+turno.extra.località.nota=Solo città. Eventuali altre info nelle note.
+
+tipoTurno.descrizione.nota=Come appare nel tabellone
+tipoTurno.ordine.nota=Di presentazione nel tabellone
+tipoTurno.inizio.nota=Come appare nel tabellone
