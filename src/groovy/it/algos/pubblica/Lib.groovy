@@ -427,6 +427,7 @@ class Lib {
         if (giorno) {
             giornoTxt = giorno.toLocaleString()
             giornoTxt = giornoTxt.substring(0, giornoTxt.indexOf(' ')).trim()
+            giornoTxt = giornoTxt.replace('2012', '12')
 
             cal.setTime(giorno)
             numSettimana = cal.get(GregorianCalendar.DAY_OF_WEEK)
@@ -437,6 +438,45 @@ class Lib {
 
         /* valore di ritorno */
         return giornoTxt
+    }// fine del metodo
+
+    /**
+     * Restituisce la settimana dell'anno.
+     */
+    public static int getSettimana(Date giorno) {
+        /* variabili e costanti locali di lavoro */
+        int settimana = 0
+        Calendar cal
+
+        try { // prova ad eseguire il codice
+            cal = Calendar.getInstance()
+            cal.setTime(giorno)
+            settimana = cal.get(GregorianCalendar.WEEK_OF_YEAR)
+        } catch (Exception unErrore) { // intercetta l'errore
+        }// fine del blocco try-catch
+
+        /* valore di ritorno */
+        return settimana
+    }// fine del metodo
+
+    /**
+     * Testo descrittivo di una settimana (periodo)
+     */
+    public static String getTestoSettimana(Date giorno) {
+        /* variabili e costanti locali di lavoro */
+        String testo = 'dal '
+        Calendar cal = Calendar.getInstance()
+
+        if (giorno) {
+            giorno = Lib.getLunedi(giorno)
+            testo += Lib.getGiornoMese(giorno)
+            testo += ' al '
+            cal.setTime(giorno + 6)
+            testo += Lib.getGiornoMese(giorno + 6)
+        }// fine del blocco if
+
+        // valore di ritorno
+        return testo
     }// fine del metodo
 
     /**
@@ -752,5 +792,95 @@ class Lib {
         // valore di ritorno
         return testoOut
     } // fine della closure
+
+    /**
+     * Restituisce il primo giorno della settimana (lunedì)
+     * relativo alla data ricevuta come parametro
+     *
+     * @param giorno
+     * @return primo giorno della settimana
+     */
+    public static Date getLunedi(Date giornoIn) {
+        /* variabili e costanti locali di lavoro */
+        Date giornoOut = null
+        Calendar cal
+        int numWeek
+
+        if (giornoIn) {
+            giornoOut = giornoIn
+            cal = Calendar.getInstance()
+            cal.setTime(giornoOut)
+
+            while (cal.get(Calendar.DAY_OF_WEEK) != 2) {
+                giornoOut = giornoOut - 1
+                cal.setTime(giornoOut)
+            }// fine del blocco while
+        }// fine del blocco if
+
+        /* valore di ritorno */
+        return giornoOut
+    } // fine del metodo
+
+    /**
+     * Restituisce la data come 12-set
+     *
+     * @param giorno
+     * @return primo giorno della settimana
+     */
+    public static String getGiornoMese(Date giorno) {
+        /* variabili e costanti locali di lavoro */
+        String data = ''
+        String sep = '-'
+        Calendar cal
+        int numMese
+
+        def mesi = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic']
+
+        if (giorno) {
+            cal = Calendar.getInstance()
+            cal.setTime(giorno)
+            data += cal.get(GregorianCalendar.DAY_OF_MONTH)
+            data += sep
+            numMese = cal.get(GregorianCalendar.MONTH)
+            data += mesi[numMese]
+        }// fine del blocco if
+
+        /* valore di ritorno */
+        return data
+    } // fine del metodo
+
+    /**
+     * Tag colore
+     */
+    public static String setRosso(String testoIn) {
+        /* variabili e costanti locali di lavoro */
+        String testoOut = ''
+
+        if (testoIn) {
+            testoOut = '<span style="color:red">'
+            testoOut += testoIn
+            testoOut += '</span>'
+        }// fine del blocco if
+
+        /* valore di ritorno */
+        return testoOut
+    } // fine del metodo
+
+    /**
+     * Tag colore
+     */
+    public static String setVerde(String testoIn) {
+        /* variabili e costanti locali di lavoro */
+        String testoOut = ''
+
+        if (testoIn) {
+            testoOut = '<span style="color:green">'
+            testoOut += testoIn
+            testoOut += '</span>'
+        }// fine del blocco if
+
+        /* valore di ritorno */
+        return testoOut
+    } // fine del metodo
 
 } // fine della classe

@@ -82,7 +82,11 @@ class MiliteController {
         def oreTotali = militeService.getOreTotali(militeInstance)
 
         params.max = Math.min(params.max ? params.int('max') : 30, 100)
-        [militeInstance: militeInstance, turniList: turniList, oreTotali: oreTotali]
+        if (militeInstance.dipendente) {
+            render(view: "turniSettimana", model: [militeInstance: militeInstance, turniList: turniList, oreTotali: oreTotali])
+        } else {
+            render(view: "turni", model: [militeInstance: militeInstance, turniList: turniList, oreTotali: oreTotali])
+        }// fine del blocco if-else
     }
 
     def list = {

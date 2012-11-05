@@ -27,36 +27,36 @@
             <thead>
             <tr>
                 <th width="10">#</th>
-                <th width="100">Data</th>
-                <th width="60">Funzione</th>
-                <th width="50">Turno</th>
-                <th width="300">Militi</th>
+                <th width="140">Data</th>
+                <th width="40">Ruolo</th>
+                <th width="45">Turno</th>
+                <th width="340">Militi</th>
                 <th width="30">Ore</th>
             </tr>
             </thead>
 
             <tbody>
-            <g:each in="${turniList}" status="i" var="militeInstance">
+            <g:each in="${turniList}" status="i" var="rigaTurno">
                 <g:form>
                     <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 
-                        <g:hiddenField name="idTurno" value="${militeInstance['idTurno']}"/>
+                        <g:hiddenField name="idTurno" value="${rigaTurno['idTurno']}"/>
 
-                        <td>${militeInstance['num']}</td>
-
-                        <td><g:link controller="turno" action="editPub"
-                                    id="${militeInstance['idTurno']}">${militeInstance['data']}</g:link></td>
-
-                        <td>${militeInstance['funzione']}</td>
+                        <td>${rigaTurno['num']}</td>
 
                         <td><g:link controller="turno" action="editPub"
-                                    id="${militeInstance['idTurno']}">${militeInstance['turno']}</g:link></td>
+                                    id="${rigaTurno['idTurno']}">${rigaTurno['data']}</g:link></td>
+
+                        <td>${rigaTurno['funzione']}</td>
 
                         <td><g:link controller="turno" action="editPub"
-                                    id="${militeInstance['idTurno']}">${militeInstance['militi']}</g:link></td>
+                                    id="${rigaTurno['idTurno']}">${rigaTurno['turno']}</g:link></td>
 
                         <td><g:link controller="turno" action="editPub"
-                                    id="${militeInstance['idTurno']}">${militeInstance['ore']}</g:link></td>
+                                    id="${rigaTurno['idTurno']}">${rigaTurno['militi']}</g:link></td>
+
+                        <td><g:link controller="turno" action="editPub"
+                                    id="${rigaTurno['idTurno']}">${rigaTurno['oreTurno']}</g:link></td>
 
                     </tr>
                 </g:form>

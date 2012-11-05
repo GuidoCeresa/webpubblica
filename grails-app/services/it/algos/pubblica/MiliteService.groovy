@@ -217,8 +217,89 @@ class MiliteService {
             }// fine del blocco if
         }// end of each
 
+        // aggiunge un totale settimanale
+        lista = regolaListaDipendente(milite, lista)
+
         return lista
     }// fine del metodo
+
+    // aggiunge un totale settimanale
+    private regolaListaDipendente(Milite milite, listaIn) {
+        def listaOut
+        def mappa = null
+        mappa = new HashMap()
+        int numWeek = 0
+        int numWeekOld = 0
+        Turno turno
+        Date giorno
+        long idTurno = 0
+        long idTurnoOld = 0
+        String siglaSettimana
+        String descrizioneSettimana
+        int oreSettimanaNum = 0
+        int oreTurno
+        int oreTurnoOld
+        String oreSettimana
+
+        if (milite.dipendente) {
+            listaOut = new ArrayList()
+            listaIn?.eachWithIndex { it, idx ->
+                numWeek = it.get('numWeek')
+                oreTurno = it.get('oreTurno')
+                if (numWeek != numWeekOld || idx == listaIn.size() - 1) { // inizia una nuova settimana
+                    idTurno = it.get('idTurno')
+                    mappa = new HashMap()
+                    turno = Turno.get(idTurnoOld)
+                    if (turno) {
+                        giorno = turno.giorno
+                    }// fine del blocco if
+
+                    if (idx == listaIn.size() - 1) {
+                        oreSettimanaNum += oreTurno
+                    }// fine del blocco if
+
+                    siglaSettimana = 'settimana ' + numWeek
+                    siglaSettimana = Lib.setVerde(siglaSettimana)
+                    descrizioneSettimana = Lib.getTestoSettimana(giorno)
+                    descrizioneSettimana = Lib.setVerde(descrizioneSettimana)
+                    oreSettimana = oreSettimanaNum + ''
+                    oreSettimana = Lib.setVerde(oreSettimana)
+
+                    mappa.put('num', '')
+                    mappa.put('turnoGiornaliero', false)
+                    mappa.put('siglaSettimana', siglaSettimana)
+                    mappa.put('funzione', '')
+                    mappa.put('turno', '')
+                    mappa.put('oreSettimana', oreSettimana)
+                    mappa.put('descrizioneSettimana', descrizioneSettimana)
+                    if (idx > 0) {
+                        if (idx == listaIn.size() - 1) {
+                            listaOut.add(it)
+                            listaOut.add(mappa)
+                        } else {
+                            listaOut.add(mappa)
+                            listaOut.add(it)
+                        }// fine del blocco if-else
+                        oreSettimanaNum = 0
+                    } else {
+                        listaOut.add(it)
+                    }// fine del blocco if-else
+                    idTurnoOld = idTurno
+                } else {
+                    listaOut.add(it)
+                }// fine del blocco if-else
+                numWeekOld = numWeek
+                oreTurnoOld = oreTurno
+                oreSettimanaNum += oreTurnoOld
+            }// fine del blocco each
+        } else {
+            listaOut = listaIn
+        }// fine del blocco if-else
+
+        // valore di ritorno
+        return listaOut
+    }// fine del metodo
+
 
     private HashMap creaMappaTurno(Milite milite, Turno turno, num) {
         def mappa = null
@@ -227,11 +308,16 @@ class MiliteService {
             mappa = new HashMap()
             mappa.put('num', num)
             mappa.put('idTurno', turno.id)
+            mappa.put('turnoGiornaliero', true)
             mappa.put('data', Lib.getData(turno.giorno))
+            mappa.put('numWeek', Lib.getSettimana(turno.giorno))
+            mappa.put('siglaSettimana', '')
             mappa.put('funzione', turno.getFunzione(milite))
             mappa.put('turno', turno.tipoTurno)
             mappa.put('militi', turno.getCompagni(milite))
-            mappa.put('ore', turno.getOre(milite))
+            mappa.put('descrizioneSettimana', '')
+            mappa.put('oreTurno', turno.getOre(milite))
+            mappa.put('oreSettimana', '')
         }// fine del blocco if
 
         return mappa
